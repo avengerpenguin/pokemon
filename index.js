@@ -14,7 +14,17 @@ const today =
   ":" +
   now.getMinutes();
 
-const pokedex = await import("./pokemon.json");
+// Load individually to allow webpack to split the bundle
+const pokedex = {};
+Object.assign(pokedex, await import("./pokemon-1.json"));
+Object.assign(pokedex, await import("./pokemon-2.json"));
+Object.assign(pokedex, await import("./pokemon-3.json"));
+Object.assign(pokedex, await import("./pokemon-4.json"));
+Object.assign(pokedex, await import("./pokemon-5.json"));
+Object.assign(pokedex, await import("./pokemon-6.json"));
+Object.assign(pokedex, await import("./pokemon-7.json"));
+Object.assign(pokedex, await import("./pokemon-8.json"));
+Object.assign(pokedex, await import("./pokemon-9.json"));
 
 const names = Object.keys(pokedex);
 const answer = pokedex[names[(parseInt(md5(today), 16) % names.length) - 1]];

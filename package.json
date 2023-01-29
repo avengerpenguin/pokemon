@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "webpack && cp CNAME dist/",
+    "build": "NODE_ENV=production webpack && cp CNAME dist/",
     "start": "webpack serve"
   },
   "devDependencies": {

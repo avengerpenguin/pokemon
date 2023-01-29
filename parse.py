@@ -19,7 +19,10 @@ KEYS = {
 with open("Pokedex_Ver_SV1.csv", encoding="utf-8-sig") as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
-        POKEDEX[row["Name"]] = {key: value for key, value in row.items() if key in KEYS}
+        POKEDEX[row["Generation"]][row["Name"]] = {
+            key: value for key, value in row.items() if key in KEYS
+        }
 
-with open(f"pokemon.json", "w") as outfile:
-    json.dump(POKEDEX, outfile, indent=2, sort_keys=True)
+for gen in POKEDEX:
+    with open(f"pokemon-{gen}.json", "w") as outfile:
+        json.dump(POKEDEX[gen], outfile, indent=2, sort_keys=True)
