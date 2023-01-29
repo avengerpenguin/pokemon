@@ -6,6 +6,9 @@ module.exports = {
   entry: {
     main: './index.js'
   },
+  output: {
+    filename: '[name].[contenthash].js',
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'template.html',
