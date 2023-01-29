@@ -4,15 +4,15 @@ const md5 = require("js-md5");
 
 const now = new Date();
 const today =
-  now.getFullYear() +
+  now.getUTCFullYear() +
   "-" +
-  (now.getMonth() + 1) +
+  (now.getUTCMonth() + 1) +
   "-" +
-  now.getDate() +
+  now.getUTCDate() +
   "T" +
-  now.getHours() +
+  now.getUTCHours() +
   ":" +
-  now.getMinutes();
+  now.getUTCMinutes();
 
 // Load individually to allow webpack to split the bundle
 const pokedex = {};
