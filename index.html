@@ -6,28 +6,70 @@
     <!-- CSS for users with dark mode -->
     <link
       rel="stylesheet"
-      href="awsm_theme_big-stone.min.css"
+      href="https://unpkg.com/awsm.css/dist/awsm_theme_black.min.css"
       media="(prefers-color-scheme: dark)"
     />
 
     <!-- CSS for users without dark mode -->
     <link
       rel="stylesheet"
-      href="awsm_theme_pearl-lusta.min.css"
+      href="https://unpkg.com/awsm.css/dist/awsm_theme_white.min.css"
       media="(prefers-color-scheme: no-preference), (prefers-color-scheme: light)"
     />
     <style>
+      body > header {
+        margin-bottom: 1em;
+      }
+      .autoComplete_wrapper,
+      #autoComplete {
+        width: 100%;
+      }
+      #result {
+        text-align: center;
+        margin-bottom: 1em;
+      }
       .right {
         color: green;
+      }
+      .right:after {
+        content: " ✅";
       }
       .wrong {
         color: red;
       }
+      #autoComplete {
+        width: 100%;
+      }
+      ul#guesses {
+        list-style: none;
+      }
+      ul#guesses li {
+        height: 64px;
+        margin-bottom: 0.5em;
+        margin-top: 1em;
+        min-height: 7.5em;
+      }
+      ul#guesses li p {
+        margin-top: 0.2em;
+        margin-bottom: 0.2em;
+      }
+      ul#guesses li img {
+        width: 64px;
+        height: 64px;
+        float: right;
+        margin-left: 0.5em;
+        margin-bottom: 0.5em;
+      }
     </style>
   </head>
   <body>
-    <input id="autoComplete" />
-    <div id="result"></div>
-    <ul id="guesses"></ul>
-  <script defer src="/main.e7cb130f9b7966c8dbab.js"></script></body>
+    <header>
+      <h1>Guess the Pokemon</h1>
+    </header>
+    <main>
+      <div id="result"></div>
+      <form><input id="autoComplete" /></form>
+      <ul id="guesses"></ul>
+    </main>
+  <script defer src="/main.3b15c99c439a109f7b43.js"></script></body>
 </html>
