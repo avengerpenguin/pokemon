@@ -89,6 +89,9 @@ if (gens.length > 0) {
           document
             .getElementById("guesses")
             .insertBefore(guess, document.getElementById("guesses").firstChild);
+          autoCompleteJS.data.src = autoCompleteJS.data.src.filter(
+            (x) => x !== selection
+          );
           autoCompleteJS.input.value = "";
           autoCompleteJS.input.focus();
         },
