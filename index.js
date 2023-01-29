@@ -65,15 +65,12 @@ const config = {
                 autoCompleteJS.input.value = selection;
                 if (selection === answer.Name) {
                     document.getElementById('result').innerHTML = '<p class="right">Correct!</p>'
-                    const guess = document.createElement('li')
-                    guess.innerHTML = renderPokemon(pokedex[selection], answer);
-                    document.getElementById('guesses').appendChild(guess)
                 } else {
                     document.getElementById('result').innerHTML = '<p class="wrong">Nope!</p>'
-                    const guess = document.createElement('li')
-                    guess.innerHTML = renderPokemon(pokedex[selection], answer);
-                    document.getElementById('guesses').appendChild(guess)
                 }
+                const guess = document.createElement('li')
+                guess.innerHTML = `<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokedex[selection].No}.png">` + renderPokemon(pokedex[selection], answer);
+                document.getElementById('guesses').insertBefore(guess, document.getElementById('guesses').firstChild);
             }
         }
     }
