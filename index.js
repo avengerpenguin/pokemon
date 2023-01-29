@@ -32,7 +32,8 @@ function highlight(snippet, correctVersion) {
 }
 
 function renderPokemon(guess, answer) {
-  let output = highlight(guess.Name, answer.Name) + ": ";
+  let output =
+    "<h2>" + highlight(guess.Name, answer.Name) + "</h2><p>Types/Category: ";
 
   const answerTypes = [answer.Type1, answer.Type2];
   const answerAbilities = [
@@ -45,32 +46,28 @@ function renderPokemon(guess, answer) {
     output += highlight(guess.Type1, answerTypes);
   }
   if (guess.Type2) {
-    output += " / " + highlight(guess.Type2, answerTypes);
-  }
-  if (guess.Color) {
-    output += " / " + highlight(guess.Color, answer.Color);
+    output += ",  " + highlight(guess.Type2, answerTypes);
   }
   if (guess.Category) {
-    output += " / " + highlight(guess.Category, answer.Category);
+    output += ", " + highlight(guess.Category, answer.Category);
+  }
+  if (guess.Color) {
+    output += "</p><p>Colour: " + highlight(guess.Color, answer.Color);
   }
   if (guess.Generation) {
     output +=
-      " / " +
-      highlight(
-        `Generation ${guess.Generation}`,
-        `Generation ${answer.Generation}`
-      );
+      "</p><p>Generation: " + highlight(guess.Generation, answer.Generation);
   }
   if (guess.Ability1) {
-    output += " / " + highlight(guess.Ability1, answerAbilities);
+    output += "<p>Abilities: " + highlight(guess.Ability1, answerAbilities);
   }
   if (guess.Ability2) {
-    output += " / " + highlight(guess.Ability2, answerAbilities);
+    output += ", " + highlight(guess.Ability2, answerAbilities);
   }
   if (guess.Ability_Hidden) {
-    output += " / " + highlight(guess.Ability_Hidden, answerAbilities);
+    output += ", " + highlight(guess.Ability_Hidden, answerAbilities);
   }
-  return output;
+  return output + "</p>";
 }
 
 const config = {
@@ -85,24 +82,28 @@ const config = {
     input: {
       selection: (event) => {
         const selection = event.detail.selection.value;
-        autoCompleteJS.input.value = selection;
         if (selection === answer.Name) {
-          document.getElementById("result").innerHTML =
-            '<p class="right">Correct!</p>';
+          document.getElementById(
+            "result"
+          ).innerHTML = `<p class="right">${pokedex[selection].Name} is correct!</p>`;
         } else {
-          document.getElementById("result").innerHTML =
-            '<p class="wrong">Nope!</p>';
+          document.getElementById(
+            "result"
+          ).innerHTML = `<p class="wrong">Not a ${pokedex[selection].Name}!</p>`;
         }
         const guess = document.createElement("li");
         guess.innerHTML =
-          `<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokedex[selection].No}.png">` +
+          `<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokedex[selection].No}.png">` +
           renderPokemon(pokedex[selection], answer);
         document
           .getElementById("guesses")
           .insertBefore(guess, document.getElementById("guesses").firstChild);
+        autoCompleteJS.input.value = "";
+        autoCompleteJS.input.focus();
       },
     },
   },
 };
 
 const autoCompleteJS = new autoComplete(config);
+autoCompleteJS.input.focus();
