@@ -1,10 +1,11 @@
 {
   "scripts": {
     "build": "webpack && cp CNAME dist/",
-    "start": "webpack --watch"
+    "start": "webpack serve"
   },
   "devDependencies": {
     "@tarekraafat/autocomplete.js": "^10.2.7",
+    "awsm.css": "^3.0.7",
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.0",
     "js-md5": "^0.7.3",
