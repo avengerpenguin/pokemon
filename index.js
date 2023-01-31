@@ -59,7 +59,7 @@ if (gens.length > 0) {
   }
 
   const names = Object.keys(pokedex);
-  const answer = pokedex[names[(parseInt(md5(today), 16) % names.length) - 1]];
+  const answer = pokedex[names[parseInt(md5(today), 16) % names.length]];
 
   const config = {
     placeHolder: "Guess a Pokemon...",
