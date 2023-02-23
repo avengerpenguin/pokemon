@@ -7,15 +7,6 @@ const params = new URLSearchParams(window.location.search);
 const gens = params.getAll("gen");
 
 if (gens.length > 0) {
-  document.getElementsByTagName("main")[0].innerHTML = `
-      <p><em>Using generations: ${gens.join(
-        ", "
-      )} -- <a href="/">Choose different generations</a>.</em></p>
-      <div id="result"></div>
-      <input id="autoComplete" />
-      <ul id="guesses"></ul>
-    `;
-
   const now = new Date();
   const today =
     now.getUTCFullYear() +
@@ -23,10 +14,20 @@ if (gens.length > 0) {
     (now.getUTCMonth() + 1) +
     "-" +
     now.getUTCDate() +
-    "T" +
+    " " +
     now.getUTCHours() +
     ":" +
     now.getUTCMinutes();
+
+  document.getElementsByTagName("main")[0].innerHTML = `
+      <p><em>Using generations: ${gens.join(
+        ", "
+      )} -- <a href="/">Choose different generations</a>.</em></p>
+      <div id="result"></div>
+      <input id="autoComplete" />
+      <ul id="guesses"></ul>
+      <small>${today}</small>
+    `;
 
   // Load individually to allow webpack to split the bundle
   const pokedex = {};
@@ -59,7 +60,8 @@ if (gens.length > 0) {
   }
 
   const names = Object.keys(pokedex);
-  const answer = pokedex[names[parseInt(md5(today), 16) % names.length]];
+  const answer =
+    pokedex[names[parseInt(md5(today).substring(0, 10), 16) % names.length]];
 
   const config = {
     placeHolder: "Guess a Pokemon...",
