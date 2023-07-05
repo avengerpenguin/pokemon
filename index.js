@@ -21,7 +21,7 @@ if (gens.length > 0) {
 
   document.getElementsByTagName("main")[0].innerHTML = `
       <p><em>Using generations: ${gens.join(
-        ", "
+        ", ",
       )} -- <a href="/">Choose different generations</a>.</em></p>
       <div id="result"></div>
       <input id="autoComplete" />
@@ -77,11 +77,11 @@ if (gens.length > 0) {
           const selection = event.detail.selection.value;
           if (selection === answer.Name) {
             document.getElementById(
-              "result"
+              "result",
             ).innerHTML = `<p class="right">${pokedex[selection].Name} is correct!</p>`;
           } else {
             document.getElementById(
-              "result"
+              "result",
             ).innerHTML = `<p class="wrong">Not a ${pokedex[selection].Name}!</p>`;
           }
           const guess = document.createElement("li");
@@ -92,7 +92,7 @@ if (gens.length > 0) {
             .getElementById("guesses")
             .insertBefore(guess, document.getElementById("guesses").firstChild);
           autoCompleteJS.data.src = autoCompleteJS.data.src.filter(
-            (x) => x !== selection
+            (x) => x !== selection,
           );
           autoCompleteJS.input.value = "";
           autoCompleteJS.input.focus();
