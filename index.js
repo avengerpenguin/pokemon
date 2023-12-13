@@ -76,13 +76,11 @@ if (gens.length > 0) {
         selection: (event) => {
           const selection = event.detail.selection.value;
           if (selection === answer.Name) {
-            document.getElementById(
-              "result",
-            ).innerHTML = `<p class="right">${pokedex[selection].Name} is correct!</p>`;
+            document.getElementById("result").innerHTML =
+              `<p class="right">${pokedex[selection].Name} is correct!</p>`;
           } else {
-            document.getElementById(
-              "result",
-            ).innerHTML = `<p class="wrong">Not a ${pokedex[selection].Name}!</p>`;
+            document.getElementById("result").innerHTML =
+              `<p class="wrong">Not a ${pokedex[selection].Name}!</p>`;
           }
           const guess = document.createElement("li");
           guess.innerHTML =
